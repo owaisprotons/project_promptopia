@@ -51,7 +51,7 @@ const updatePrompt = () => {
       });
     };
 
-    if (promptId) fetchData();
+    fetchData();
   }, [promptId]);
 
   const updateprompt = async (e) => {
