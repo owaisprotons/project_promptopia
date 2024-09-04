@@ -5,7 +5,7 @@ import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Form from "@components/Form";
-import { fetchData } from "next-auth/client/_utils";
+
 
 const updatePrompt = () => {
   const router = useRouter();
