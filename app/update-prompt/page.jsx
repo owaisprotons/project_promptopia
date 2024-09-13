@@ -1,19 +1,24 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useRouter, useSearchParams } from "next/navigation";
+import {  useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Form from "@components/Form";
+
 
 const updatePrompt = () => {
   const router = useRouter();
   const { data: session } = useSession();
 
-  const promptId = useSearchParams().get("id");
+   // Moving search params inside useEffect to avoid SSR issues
+   const [promptId, setPromptId] = useState(null);
 
+
+  // const promptId = useSearchParams().get("id");
+  //   or 
   //   const searchParams = useSearchParams();
-  //   const promptId = searchParamsget("id");
+  //   const promptId = searchParams.get("id");
 
   const [submitting, setSubmitting] = useState(false);
   const [post, setPost] = useState({
@@ -22,6 +27,12 @@ const updatePrompt = () => {
   });
 
   useEffect(() => {
+    // Only run this effect on the client
+    const searchParams = useSearchParams();
+    const idFromParams = searchParams.get("id");
+    setPromptId(idFromParams);
+
+    
     // const fetchData =  () => {
     //    fetch(`api/prompt/${promptId}`, {
     //     method: "get",
@@ -64,9 +75,9 @@ const updatePrompt = () => {
       });
 
       let data = response.json();
-
-      if (response.ok) {
-        router.push("/");
+      
+      if(response.ok){
+        router.push('/')
       }
     }
   };
