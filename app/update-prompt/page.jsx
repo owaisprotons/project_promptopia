@@ -1,17 +1,14 @@
 "use client";
 
 import { useSession } from "next-auth/react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import Form from "@components/Form";
 
-
 const updatePrompt = () => {
   const router = useRouter();
   const { data: session } = useSession();
-
-  const [id] = useParams()
 
   const promptId = useSearchParams().get("id");
 
@@ -67,9 +64,9 @@ const updatePrompt = () => {
       });
 
       let data = response.json();
-      
-      if(response.ok){
-        router.push('/')
+
+      if (response.ok) {
+        router.push("/");
       }
     }
   };
