@@ -54,7 +54,7 @@ const updatePrompt = () => {
     fetchData();
   }, [promptId]);
 
-  const updateprompt = async (e) => {
+  const handleUpdateprompt = async (e) => {
     e.preventDefault();
 
     if (promptId) {
@@ -80,7 +80,7 @@ const updatePrompt = () => {
       post={post}
       setPost={setPost}
       submitting={submitting}
-      handleSubmit={updateprompt}
+      handleSubmit={handleUpdateprompt}
     />
   );
 };
